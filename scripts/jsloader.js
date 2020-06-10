@@ -1,7 +1,10 @@
 // delayed js loader
-
+import { html, render } from 'https://unpkg.com/htm/preact/standalone.module.js'
+const scripts = [];
 function loadScript(url, callback, aux) {
+	console.log(url);
 	let script = document.createElement("script");
+	// script.type = "module"
 	document.head.appendChild(script);
 	if (callback)
 		script.onload = callback;
@@ -11,6 +14,16 @@ function loadScript(url, callback, aux) {
 		}
 	}
 	script.src = url;
+// 	const script = html`
+// <script
+// onload=${callback ? callback : ""}
+// ${aux ? Object.entries(aux).map(([k,v]) => `${k}="${v}"`).join(" ") : ""}
+// src=${url}
+// ></script>
+// 	`
+// 	// console.log(script)
+// 	scripts.push(script)
+// 	render(script,document.getElementById("lazy-load-scripts"))
 }
 
 

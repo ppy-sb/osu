@@ -157,3 +157,5 @@ function launchGame(osublob, beatmapid, version) {
         }
     );
 }
+
+export default launchGame;

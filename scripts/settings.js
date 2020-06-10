@@ -52,7 +52,10 @@ function setOptionPanel() {
 
         hideNumbers: false,
         hideGreat: false,
-        hideFollowPoints: false,
+		hideFollowPoints: false,
+		
+		//added for previewer
+		previewMode: false
 	};
 	window.gamesettings = {};
 	Object.assign(gamesettings, defaultsettings);
@@ -93,7 +96,9 @@ function setOptionPanel() {
 
 	        window.game.hideNumbers = this.hideNumbers;
 	        window.game.hideGreat = this.hideGreat;
-	        window.game.hideFollowPoints = this.hideFollowPoints;
+			window.game.hideFollowPoints = this.hideFollowPoints;
+			
+			window.game.previewMode = this.previewMode;
 		}
 	}
 	gamesettings.loadToGame();

@@ -9,9 +9,11 @@
 *   tint: 24-bit integer color of display
 *   
 */
-
+// import { html, render } from 'https://unpkg.com/htm/preact/standalone.module.js'
 define([], function()
 {
+    // import { html, render } from 'https://unpkg.com/htm/preact/standalone.module.js'
+    // console.log(html`test`);
     function addPlayHistory(summary) {
         if (!window.playHistory1000) {
             window.playHistory1000 = [];
@@ -387,6 +389,38 @@ define([], function()
                 })
 
             }
+        }
+        this.showRestart = function(retry){
+            function newdiv(parent, classname, text) {
+                let div = document.createElement("div");
+                if (parent)
+                    parent.appendChild(div);
+                if (classname)
+                    div.className = classname;
+                if (text)
+                    div.innerText = text;
+                return div;
+            }
+            function createElement(str) {
+                var div = document.createElement('div');
+                div.innerHTML = str;
+                return div.childNodes;
+            }
+            let grading = newdiv(null, "grading d-flex flex-column justify-content-center align-items-stretch h-100");
+            grading.classList.add("transparent");
+            document.body.appendChild(grading);
+            let b1 = newdiv(grading, "align-self-center");
+            const replayBtn = createElement(`<svg class="bi bi-arrow-counterclockwise" width="10em" height="10em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M12.83 6.706a5 5 0 0 0-7.103-3.16.5.5 0 1 1-.454-.892A6 6 0 1 1 2.545 5.5a.5.5 0 1 1 .91.417 5 5 0 1 0 9.375.789z"/>
+  <path fill-rule="evenodd" d="M7.854.146a.5.5 0 0 0-.708 0l-2.5 2.5a.5.5 0 0 0 0 .708l2.5 2.5a.5.5 0 1 0 .708-.708L5.707 3 7.854.854a.5.5 0 0 0 0-.708z"/>
+</svg>`);
+console.log(replayBtn)
+            b1.appendChild(...replayBtn)
+            b1.onclick = function () {
+                grading.remove();
+                retry();
+            }
+            window.setTimeout(function () { grading.classList.remove("transparent") }, 100);
         }
     }
     
